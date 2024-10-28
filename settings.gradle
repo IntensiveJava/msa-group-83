@@ -1,3 +1,4 @@
 rootProject.name = 'msa-group-83'
 
 includeBuild 'eureka-server'
+includeBuild 'ticket-service'

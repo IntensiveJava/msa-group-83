@@ -11,6 +11,11 @@
                   <project path="$PROJECT_DIR$/eureka-server" />
                 </projects>
               </build>
+              <build path="$PROJECT_DIR$/ticket-service" name="ticket-service">
+                <projects>
+                  <project path="$PROJECT_DIR$/ticket-service" />
+                </projects>
+              </build>
             </builds>
           </compositeBuild>
         </compositeConfiguration>
@@ -19,6 +24,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/eureka-server" />
+            <option value="$PROJECT_DIR$/ticket-service" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -27,6 +33,14 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/eureka-server" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/ticket-service" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/ticket-service" />
           </set>
         </option>
       </GradleProjectSettings>
