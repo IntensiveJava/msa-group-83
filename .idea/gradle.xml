@@ -16,6 +16,11 @@
                   <project path="$PROJECT_DIR$/ticket-service" />
                 </projects>
               </build>
+              <build path="$PROJECT_DIR$/tour-service" name="tour-service">
+                <projects>
+                  <project path="$PROJECT_DIR$/tour-service" />
+                </projects>
+              </build>
             </builds>
           </compositeBuild>
         </compositeConfiguration>
@@ -25,6 +30,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/eureka-server" />
             <option value="$PROJECT_DIR$/ticket-service" />
+            <option value="$PROJECT_DIR$/tour-service" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -41,6 +47,14 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/ticket-service" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tour-service" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/tour-service" />
           </set>
         </option>
       </GradleProjectSettings>
