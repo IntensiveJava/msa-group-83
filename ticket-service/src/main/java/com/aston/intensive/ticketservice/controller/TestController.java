@@ -13,7 +13,7 @@ public class TestController {
     private String eurekaInstanceId;
 
     @Value("${temporaryVariable}")
-    private Integer temporaryVariable;
+    private Long temporaryVariable;
 
     @GetMapping("/test")
     public String test() {
