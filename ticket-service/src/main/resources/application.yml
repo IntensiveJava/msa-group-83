@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: ticket-service
+
+  kafka:
+    bootstrap-servers: localhost:29092
+
+    consumer:
+      group-id: "ticket-group-id"
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: '*'
+
+topic:
+  send-tour: send-tour-event
