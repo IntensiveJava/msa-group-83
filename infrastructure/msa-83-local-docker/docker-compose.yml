@@ -3,6 +3,7 @@ version: '3.7'
 services:
   zookeeper:
     image: confluentinc/cp-zookeeper:6.2.4
+    container_name: msa-83-zookeeper-local
     healthcheck:
       test: [ "CMD", "nc", "-vz", "localhost", "2181" ]
       interval: 10s
@@ -18,6 +19,7 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:6.2.4
+    container_name: msa-83-kafka-local
     depends_on:
       zookeeper:
         condition: service_healthy
@@ -36,6 +38,31 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,OUTSIDE:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - docker-local-network-group-83
+
+  prometheus:
+    container_name: msa-83-prometheus-local
+    image: prom/prometheus
+    volumes:
+      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9094:9090"
+    networks:
+      - docker-local-network-group-83
+
+  grafana:
+    container_name: msa-83-grafana-local
+    image: grafana/grafana
+    restart: on-failure
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      prometheus:
+        condition: service_started
+    ports:
+      - "3004:3000"
     networks:
       - docker-local-network-group-83
 

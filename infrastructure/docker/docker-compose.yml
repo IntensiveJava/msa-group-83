@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   config-server:
-    container_name: config-server
+    container_name: msa-83-config-server
     image: config-server
     restart: on-failure
     environment:
@@ -13,7 +13,7 @@ services:
       - network-msa-group-83
 
   eureka-server:
-    container_name: eureka-server
+    container_name: msa-83-eureka-server
     image: eureka-server
     restart: on-failure
     ports:
@@ -28,7 +28,7 @@ services:
       - network-msa-group-83
 
   ticket-service:
-    container_name: ticket-service
+    container_name: msa-83-ticket-service
     image: ticket-service
     restart: always
     environment:
@@ -41,7 +41,7 @@ services:
       - network-msa-group-83
 
   tour-service:
-    container_name: tour-service
+    container_name: msa-83-tour-service
     image: tour-service
     restart: always
     environment:
@@ -54,7 +54,7 @@ services:
       - network-msa-group-83
 
   api-gateway:
-    container_name: api-gateway
+    container_name: msa-83-api-gateway
     image: api-gateway
     restart: always
     environment:
@@ -69,23 +69,27 @@ services:
       - network-msa-group-83
 
   prometheus:
+    container_name: msa-83-prometheus
     image: prom/prometheus
-    ports:
-      - "9092:9090"
     volumes:
       - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-    container_name: prometheus
+    ports:
+      - "9094:9090"
     networks:
       - network-msa-group-83
 
   grafana:
+    container_name: msa-83-grafana
     image: grafana/grafana
-    ports:
-      - "3002:3000"
+    restart: on-failure
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin
-    container_name: grafana-msa
+    depends_on:
+      prometheus:
+        condition: service_started
+    ports:
+      - "3004:3000"
     networks:
       - network-msa-group-83
 
